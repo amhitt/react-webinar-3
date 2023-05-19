@@ -1,11 +1,30 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import './style.css';
+import {plural} from "../../utils";
 
-function Controls({onAdd}){
+function Controls({cart, handleModal, totalPrice}) {
+  const cartItems = Object.values(cart)
+
+  const totalCount = cartItems ?
+
+    cartItems.reduce((acc, cur) => {
+      console.log(acc, cur)
+      return acc + cur.length
+    }, 0) : 0
+
+
   return (
     <div className='Controls'>
-      <button onClick={() => onAdd()}>Добавить</button>
+      <p> В корзине: </p>
+          <span className='Controls-info'>
+            {totalCount > 0
+              ? ` ${totalCount} ${plural(totalCount, {one: 'товар', few: 'товара', many: 'товаров'})} ${totalPrice} ₽`
+              : 'пусто'}
+        </span>
+      <button onClick={handleModal}>
+        Перейти
+      </button>
     </div>
   )
 }
@@ -15,7 +34,9 @@ Controls.propTypes = {
 };
 
 Controls.defaultProps = {
-  onAdd: () => {}
+  onAdd: () => {
+  }
 }
 
 export default React.memo(Controls);
+

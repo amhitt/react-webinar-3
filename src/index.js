@@ -22,5 +22,6 @@ store.subscribe(() => {
   root.render(<App store={store}/>);
 });
 
+window.store = store
 // Первый рендер приложения
 root.render(<App store={store}/>);
