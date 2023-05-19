@@ -14,7 +14,7 @@ function App({store}) {
 
   const [modal, setModal] = useState(false)
 
-  const {list, cart, } = store.getState();
+  const {list, cart, cartTotalPrice } = store.getState();
 
 
   const callbacks = {
@@ -37,17 +37,18 @@ function App({store}) {
       <Controls
         cart={cart}
         handleModal={callbacks.handleModal}
-        totalPrice={totalPrice}
+        totalPrice={cartTotalPrice}
       />
       <List
         list={list}
         addToCart={callbacks.addToCart}
       />
-        {modal && <Modal
-          handleModal={callbacks.handleModal}
-          cart={cart}
-          deleteFromCart={callbacks.deleteFromCart}
-        />}
+      {modal && <Modal
+        totalPrice={cartTotalPrice}
+        handleModal={callbacks.handleModal}
+        cart={cart}
+        deleteFromCart={callbacks.deleteFromCart}
+      />}
     </PageLayout>
   );
 }

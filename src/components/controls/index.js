@@ -17,9 +17,9 @@ function Controls({cart, handleModal, totalPrice}) {
   return (
     <div className='Controls'>
       <p> В корзине: </p>
-          <span className='Controls-info'>
+      <span className='Controls-info'>
             {totalCount > 0
-              ? ` ${totalCount} ${plural(totalCount, {one: 'товар', few: 'товара', many: 'товаров'})} ${totalPrice} ₽`
+              ? ` ${totalCount} ${plural(totalCount, {one: 'товар', few: 'товара', many: 'товаров'})} / ${totalPrice} ₽`
               : 'пусто'}
         </span>
       <button onClick={handleModal}>
@@ -39,4 +39,3 @@ Controls.defaultProps = {
 }
 
 export default React.memo(Controls);
-

@@ -1,5 +1,3 @@
-
-
 /**
  * Хранилище состояния приложения
  */
@@ -7,7 +5,8 @@ class Store {
   constructor(initState = {}) {
     this.state = {
       ...initState,
-      cart: {}
+      cart: {},
+      cartTotalPrice: 0,
     };
     this.listeners = []; // Слушатели изменений состояния
   }
@@ -47,62 +46,7 @@ class Store {
    * Добавление товара в корзину
    * @param productFromList
    */
-
   addToCart(productFromList) {
-    // const selectedProduct = this.state.cart.find(product => product.code === productFromList.code)
-    // console.log(selectedProduct)
-    // if(selectedProduct) {
-    //   this.setState({
-    //     ...this.state,
-    //     cart: this.state.list.map((item) => {
-    //       if (item.code === productFromList) {
-    //         return { ...item, count: item.count +1 };
-    //       }
-    //       return item;
-    //     }),
-    //   });
-    // } else {
-    //   const item = this.state.list.find((item) => item.code === productFromList.code);
-    //   this.setState({
-    //     ...this.state,
-    //     cart: [
-    //       ...this.state.cart,
-    //       {
-    //         ...item,
-    //         count: 1,
-    //       },
-    //     ],
-    //   });
-    // }
-    //
-    // const itemInCart = this.state.cart.find(product => product.code === productFromList.code);
-    //
-    // if (!itemInCart) {
-    //   this.setState({
-    //     ...this.state,
-    //     cart: [
-    //       ...this.state.cart,
-    //       {
-    //         ...item,
-    //         count: 1,
-    //       }
-    //     ]
-    //   })
-    // } else {
-    //   this.setState({
-    //     ...this.state,
-    //     cart: [
-    //       ...this.state.cart,
-    //       {
-    //         ...itemInCart,
-    //
-    //       }
-    //     ]
-    //   })
-    // }
-
-
-
     this.setState({
       ...this.state,
       cart: {
@@ -111,27 +55,30 @@ class Store {
           this.state.cart[productFromList.code]?.length > 0 ?
             [...this.state.cart[productFromList.code], productFromList] :
             [productFromList]
-      }
-
+      },
+      cartTotalPrice: this.state.cartTotalPrice + productFromList.price
     })
   }
 
   deleteFromCart(productFromCart) {
+
+    console.log(this.state.cart[productFromCart.code].reduce((acc, cur) => acc + Number(cur.price)), 0)
+
     this.setState({
       ...this.state,
       cart: Object.keys(this.state.cart).reduce((acc, cur) => {
-        if (cur == productFromCart.code) {
-          console.log('мы в условии')
+        if (Number(cur) === productFromCart.code) {
           return acc;
         }
 
-        if (cur != productFromCart.code) {
+        if (Number(cur) !== productFromCart.code) {
           return {
             ...acc,
-            [cur]: [...this.state.cart[cur]],
+            [cur]: [...this.state.cart[Number(cur)]],
           }
         }
-      }, {})
+      }, {}),
+      cartTotalPrice: this.state.cartTotalPrice - this.state.cart[productFromCart.code].reduce((acc, cur) => (acc + Number(cur.price)), 0)
     })
   }
 }

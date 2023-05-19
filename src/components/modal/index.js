@@ -4,7 +4,7 @@ import Head from "../head";
 import Item from "../item";
 
 
-function Modal({handleModal, cart, deleteFromCart}) {
+function Modal({handleModal, cart, deleteFromCart, totalPrice}) {
 
   return (
     <div className='Modal'>
@@ -15,7 +15,6 @@ function Modal({handleModal, cart, deleteFromCart}) {
           </button>
         </Head>
         {Object.keys(cart).map((itemsCode) => {
-
           return cart[itemsCode] && <div key={itemsCode} className='List-item'>
             <Item
               item={cart[itemsCode][0]}
@@ -25,6 +24,7 @@ function Modal({handleModal, cart, deleteFromCart}) {
             />
           </div>;
         })}
+        <div>{totalPrice}</div>
       </div>
 
 
