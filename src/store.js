@@ -60,10 +60,12 @@ class Store {
     })
   }
 
+  /**
+   * Удаление товара из корзины
+   * @param productFromCart
+   */
+
   deleteFromCart(productFromCart) {
-
-    console.log(this.state.cart[productFromCart.code].reduce((acc, cur) => acc + Number(cur.price)), 0)
-
     this.setState({
       ...this.state,
       cart: Object.keys(this.state.cart).reduce((acc, cur) => {

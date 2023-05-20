@@ -19,8 +19,7 @@ List.propTypes = {
   list: PropTypes.arrayOf(PropTypes.shape({
     code: PropTypes.number
   })).isRequired,
-  onDeleteItem: PropTypes.func,
-  onSelectItem: PropTypes.func
+  addToCart: PropTypes.func,
 };
 
 List.defaultProps = {

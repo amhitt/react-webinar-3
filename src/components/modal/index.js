@@ -2,6 +2,7 @@ import React from "react";
 import "./style.css"
 import Head from "../head";
 import Item from "../item";
+import PropTypes from "prop-types";
 
 
 function Modal({handleModal, cart, deleteFromCart, totalPrice}) {
@@ -14,22 +15,33 @@ function Modal({handleModal, cart, deleteFromCart, totalPrice}) {
             Закрыть
           </button>
         </Head>
-        {Object.keys(cart).map((itemsCode) => {
-          return cart[itemsCode] && <div key={itemsCode} className='List-item'>
-            <Item
-              item={cart[itemsCode][0]}
-              count={cart[itemsCode].length}
-              onAction={deleteFromCart}
-              buttonTitle='Удалить'
-            />
-          </div>;
-        })}
-        <div>{totalPrice}</div>
-      </div>
-
-
+        <div className='Modal-content'>
+          {Object.keys(cart).map((itemsCode) => {
+            return cart[itemsCode] && <div key={itemsCode} className='List-item'>
+              <Item
+                item={cart[itemsCode][0]}
+                count={cart[itemsCode].length}
+                onAction={deleteFromCart}
+                buttonTitle='Удалить'
+              />
+            </div>;
+          })}
+          <div className='Modal-total'>
+            Итого <span>
+           {totalPrice} ₽
+        </span>
+          </div>
+        </div>
+        </div>
     </div>
   )
+}
+
+Modal.propTypes = {
+  handleModal: PropTypes.func,
+  cart: PropTypes.object,
+  deleteFromCart: PropTypes.func,
+  totalPrice: PropTypes.number
 }
 
 export default React.memo(Modal)

@@ -9,7 +9,6 @@ function Controls({cart, handleModal, totalPrice}) {
   const totalCount = cartItems ?
 
     cartItems.reduce((acc, cur) => {
-      console.log(acc, cur)
       return acc + cur.length
     }, 0) : 0
 
@@ -30,12 +29,11 @@ function Controls({cart, handleModal, totalPrice}) {
 }
 
 Controls.propTypes = {
-  onAdd: PropTypes.func
-};
+  onAdd: PropTypes.func,
+  handleModal: PropTypes.func,
+  totalPrice: PropTypes.number
 
-Controls.defaultProps = {
-  onAdd: () => {
-  }
-}
+
+};
 
 export default React.memo(Controls);

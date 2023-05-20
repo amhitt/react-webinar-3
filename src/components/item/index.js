@@ -16,9 +16,11 @@ function Item({item, onAction, buttonTitle, count}){
          onClick={callbacks.onClick}>
       <div className='Item-code'>{item.code}</div>
       <div className='Item-title'>{item.title}</div>
-      <div className='Item-price'> {item.price} ₽ </div>
+      <div className='Item-info'>
+        <div className='Item-price'> {item.price} ₽ </div>
+        {count && <div className='Item-quantity'> {count} шт </div>}
+      </div>
 
-      {count && <div className='Item-'> {count} шт </div>}
 
       <div className='Item-actions'>
         <button onClick={(e) => callbacks.actionButton(e, item)}>
@@ -33,7 +35,11 @@ Item.propTypes = {
   item: PropTypes.shape({
     code: PropTypes.number,
     title: PropTypes.string,
-  }).isRequired
+    price: PropTypes.number,
+  }).isRequired,
+  onAction: PropTypes.func,
+  count: PropTypes.number,
+  buttonTitle: PropTypes.string
 };
 
 Item.defaultProps = {

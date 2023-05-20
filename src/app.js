@@ -13,7 +13,6 @@ import Modal from "./components/modal";
 function App({store}) {
 
   const [modal, setModal] = useState(false)
-
   const {list, cart, cartTotalPrice } = store.getState();
 
 
