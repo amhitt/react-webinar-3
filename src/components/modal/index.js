@@ -28,7 +28,7 @@ function Modal({handleModal, cart, deleteFromCart, totalPrice}) {
           })}
           <div className='Modal-total'>
             Итого <span>
-           {totalPrice} ₽
+           {totalPrice.toLocaleString()} ₽
         </span>
           </div>
         </div>

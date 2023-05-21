@@ -22,8 +22,5 @@ List.propTypes = {
   addToCart: PropTypes.func,
 };
 
-List.defaultProps = {
-  addToCart: () => {},
-}
 
 export default React.memo(List);

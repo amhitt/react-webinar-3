@@ -17,7 +17,7 @@ function Item({item, onAction, buttonTitle, count}){
       <div className='Item-code'>{item.code}</div>
       <div className='Item-title'>{item.title}</div>
       <div className='Item-info'>
-        <div className='Item-price'> {item.price} ₽ </div>
+        <div className='Item-price'> {item.price.toLocaleString()} ₽ </div>
         {count && <div className='Item-quantity'> {count} шт </div>}
       </div>
 
