@@ -4,7 +4,7 @@ import Basket from "./basket";
 import useStore from "../store/use-store";
 import useSelector from "../store/use-selector";
 import {Route,  Routes} from "react-router-dom";
-import Product from "../components/product";
+import Product from "./product";
 
 /**
  * Приложение

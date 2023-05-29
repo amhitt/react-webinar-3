@@ -5,6 +5,7 @@ import {numberFormat} from "../../utils";
 import './style.css';
 import {Link} from "react-router-dom";
 
+
 function Item(props){
   const cn = bem('Item');
 

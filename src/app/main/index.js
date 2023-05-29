@@ -7,6 +7,8 @@ import List from "../../components/list";
 import useStore from "../../store/use-store";
 import useSelector from "../../store/use-selector";
 import Pagination from "../../components/pagination";
+import MenuContainer from "../../components/menu-container";
+import Menu from "../../components/menu";
 
 function Main(callback, deps) {
 
@@ -42,10 +44,13 @@ function Main(callback, deps) {
   return (
     <PageLayout>
       <Head title='Магазин'/>
-      <BasketTool onOpen={callbacks.openModalBasket} amount={select.amount}
-                  sum={select.sum}/>
+      <MenuContainer>
+        <Menu/>
+        <BasketTool onOpen={callbacks.openModalBasket} amount={select.amount}
+                    sum={select.sum}/>
+      </MenuContainer>
       <List list={select.list} renderItem={renders.item}/>
-      <Pagination currentPage={select.currentPage} totalPages={select.totalPages} goToPage={callbacks.goToPage} />
+      <Pagination currentPage={select.currentPage} totalPages={select.totalPages} goToPage={callbacks.goToPage}/>
     </PageLayout>
 
   );

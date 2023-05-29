@@ -8,9 +8,7 @@ function Pagination({currentPage, totalPages, goToPage}) {
   const pages = fetchPageNumbers(totalPages, currentPage)
 
   const handlePageClick = page => evt => {
-    evt.preventDefault()
-    console.log(page)
-    if(page !== currentPage) {
+    if (typeof page === 'number') {
       goToPage(page)
     }
   }
@@ -19,8 +17,8 @@ function Pagination({currentPage, totalPages, goToPage}) {
   return (
     <div className="Pagination">
       {pages.map((page, index) => <a
-        onClick={handlePageClick}
-        key={index}>
+        onClick={handlePageClick(page)}
+        key={index} className={`page-number ${currentPage === page ? 'active' : ''}`}>
         {page}
       </a>)}
     </div>
@@ -33,7 +31,8 @@ Pagination.propTypes = {
 }
 
 Pagination.defaultProps = {
-  goToPage: () => {}
+  goToPage: () => {
+  }
 }
 
 export default memo(Pagination)

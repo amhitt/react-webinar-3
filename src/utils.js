@@ -62,6 +62,7 @@ export function fetchPageNumbers(totalPages, currentPage)  {
   const totalNumbers = (pageNeighbours) + 2;
   const totalBlocks = totalNumbers + 1;
 
+
   if (totalPages > totalBlocks) {
     const startPage = Math.max(2, currentPage - pageNeighbours);
     const endPage = Math.min(totalPages - 1, currentPage + pageNeighbours);
