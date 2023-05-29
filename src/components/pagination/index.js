@@ -7,20 +7,27 @@ function Pagination({currentPage, totalPages, goToPage}) {
 
   const pages = fetchPageNumbers(totalPages, currentPage)
 
-  const handlePageClick = page => evt => {
+  const handlePageClick = page => {
     if (typeof page === 'number') {
       goToPage(page)
     }
   }
 
-  console.log(pages)
   return (
     <div className="Pagination">
-      {pages.map((page, index) => <a
-        onClick={handlePageClick(page)}
-        key={index} className={`page-number ${currentPage === page ? 'active' : ''}`}>
-        {page}
-      </a>)}
+      {pages.map((page, index) => {
+
+        if (typeof page === 'string') {
+          return <span key={index}>{page}</span>
+        }
+
+        return <a
+          onClick={() => handlePageClick(page)}
+          key={index}
+          className={`page-number ${currentPage === page ? 'active' : ''}`}>
+          {page}
+        </a>;
+      })}
     </div>
   )
 }

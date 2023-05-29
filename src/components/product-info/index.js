@@ -1,6 +1,7 @@
 import {memo, useCallback} from "react";
 import {cn as bem} from "@bem-react/classname";
 import 'style.css'
+import PropTypes from "prop-types";
 
 function ProductInfo({product, onAdd, productId}) {
 

@@ -47,3 +47,4 @@ function Product() {
 }
 
 export default memo(Product)
+
